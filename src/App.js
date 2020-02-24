@@ -19,13 +19,20 @@ class App extends Component{
   //   this.setState({users:res.data, loading:false})
   // }
   searchUsers = async (text) => {
-    this.setState({loading:true});
-    console.log('parent called');
-    console.log(text);
-    const res = await axios.get(`https://api.github.com/search/users?q=${text}`)
-    console.log(res.data.items);
-    this.setState({users:res.data.items, loading:false})    
+    if(text) {
+      this.setState({loading:true});
+      console.log('parent called');
+      console.log(text);
+      const res = await axios.get(`https://api.github.com/search/users?q=${text}`)
+      console.log(res.data.items);
+      this.setState({users:res.data.items, loading:false})   
+    }
   }
+
+  clearUsers = () => {
+    this.setState({users:[], loading:false})    
+  }
+
   render() {
     const name = 'abc';
     const loading = true;
@@ -35,7 +42,7 @@ class App extends Component{
       return (
         <div>
           <Navbar/>
-          <Search searchUsers={this.searchUsers}/>
+          <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} usersExist={this.state.users.length>0 ? true: false}/>
           <Users users={this.state.users} loading={this.state.loading}/>
         </div>
       );
