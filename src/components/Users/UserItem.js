@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 // class UserItem extends Component {
 
@@ -33,6 +34,10 @@ const UserItem =(props) => {
             <p>{html_url}</p> 
         </div>
     )
+}
+
+UserItem.propTypes = {
+    user: PropTypes.object.isRequired,
 }
 
 export default UserItem
