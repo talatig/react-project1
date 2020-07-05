@@ -19,7 +19,7 @@ const Users = ({users, loading}) => {
         
 export default Users
 
-Users.PropTypes = {
+Users.propTypes = {
     users: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired,
 }

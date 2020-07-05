@@ -14,12 +14,14 @@ class App extends Component{
   // async componentDidMount() {
   //   this.setState({loading:true});    
   //   console.log('cmp mount called');
-  //   const res = await axios.get('https://api.github.com/users')
+  //   const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
   //   console.log(res.data);
   //   this.setState({users:res.data, loading:false})
   // }
   searchUsers = async (text) => {
     if(text) {
+      console.log(process.env.REACT_APP_GITHUB_CLIENT_ID);
+      console.log(process.env.REACT_APP_GITHUB_CLIENT_SECRET);
       this.setState({loading:true});
       console.log('parent called');
       console.log(text);
