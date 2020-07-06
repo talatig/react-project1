@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 class Search extends Component {
     static propTypes = {
         searchUsers: PropTypes.func.isRequired,
+        clearUsers: PropTypes.func.isRequired
     }
     state = {
         text: ''
