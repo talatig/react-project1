@@ -25,7 +25,7 @@ class App extends Component{
       this.setState({loading:true});
       console.log('parent called');
       console.log(text);
-      const res = await axios.get(`https://api.github.com/search/users?q=${text}`)
+      const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
       console.log(res.data.items);
       this.setState({users:res.data.items, loading:false})   
     }
