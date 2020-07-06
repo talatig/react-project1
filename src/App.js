@@ -7,6 +7,7 @@ import Users from './components/Users/Users';
 import axios from 'axios';
 import Search from './components/Users/Search'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
+import About from './components/pages/About'
 
 class App extends Component{
   state = {
@@ -65,6 +66,9 @@ class App extends Component{
           <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} usersExist={users.length>0 ? true: false} setAlert={this.setAlert}/>
           <Users users={users} loading={loading}/>
         </div>
+          <Switch>
+            <Route exact path='/about' component={About} />
+          </Switch>
         </Router>
       );
 
