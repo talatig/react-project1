@@ -22,13 +22,14 @@ class Search extends Component {
         this.setState({text: ''});
     }   
     render() {
+        const {usersExist,clearUsers} = this.props;        
         return (
             <div>
                 <form className="form" onSubmit={this.onSubmit}>
                     <input type="text" name="text" placeholder="Search Users..." value={this.state.text} onChange={this.onChange} />
                     <input type="submit" value="Search" className="btn btn-dark btn-block"/>
                 </form>
-                {this.props.usersExist && <button className="btn btn-light btn-block" onClick={this.props.clearUsers}>Clear</button>}
+                {usersExist && <button className="btn btn-light btn-block" onClick={clearUsers}>Clear</button>}
                 
             </div>
         )
