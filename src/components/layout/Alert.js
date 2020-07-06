@@ -15,7 +15,6 @@
 import React from 'react'
 
 const Alert = (props) => {
-    console.log(props);
     const {alert} = props
     return (
         alert!==null && (

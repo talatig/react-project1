@@ -6,6 +6,7 @@ import './App.css';
 import Users from './components/Users/Users';
 import axios from 'axios';
 import Search from './components/Users/Search'
+import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
 class App extends Component{
   state = {
@@ -57,12 +58,14 @@ class App extends Component{
   render() {
       const {users,loading} = this.state;
       return (
+        <Router>
         <div>
           <Alert alert={this.state.alert}/>
           <Navbar/>
           <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} usersExist={users.length>0 ? true: false} setAlert={this.setAlert}/>
           <Users users={users} loading={loading}/>
         </div>
+        </Router>
       );
 
   }
