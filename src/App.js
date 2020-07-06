@@ -1,5 +1,6 @@
 import React, {Fragment, Component} from 'react';
 import Navbar from './components/layout/Navbar'
+import Alert from './components/layout/Alert'
 import UserItem from './components/Users/UserItem'
 import './App.css';
 import Users from './components/Users/Users';
@@ -9,7 +10,8 @@ import Search from './components/Users/Search'
 class App extends Component{
   state = {
     users: [],
-    loading: false
+    loading: false,
+    alert: null
   }
   // async componentDidMount() {
   //   this.setState({loading:true});    
@@ -19,7 +21,7 @@ class App extends Component{
   //   this.setState({users:res.data, loading:false})
   // }
   searchUsers = async (text) => {
-    if(text) {
+    //if(text) {
       console.log(process.env.REACT_APP_GITHUB_CLIENT_ID);
       console.log(process.env.REACT_APP_GITHUB_CLIENT_SECRET);
       this.setState({loading:true});
@@ -28,7 +30,20 @@ class App extends Component{
       const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
       console.log(res.data.items);
       this.setState({users:res.data.items, loading:false})   
-    }
+    //}
+  }
+
+  setAlert = (msg,type) => {
+    console.log(msg);
+    console.log(type);
+    this.setState(
+      {
+        alert:{
+          msg: msg,
+          type: type    
+        }
+      }
+    ) 
   }
 
   clearUsers = () => {
@@ -39,8 +54,9 @@ class App extends Component{
       const {users,loading} = this.state;
       return (
         <div>
+          <Alert alert={this.state.alert}/>
           <Navbar/>
-          <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} usersExist={users.length>0 ? true: false}/>
+          <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} usersExist={users.length>0 ? true: false} setAlert={this.setAlert}/>
           <Users users={users} loading={loading}/>
         </div>
       );
