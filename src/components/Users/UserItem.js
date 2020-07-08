@@ -33,7 +33,7 @@ const UserItem =(props) => {
             <img style={{width: '60px'}} className='round-img' src={avatar_url}/>
             <p>{html_url}</p> 
             <div>
-                <Link to ={`/user/${login}`} className="btn btn-dark btn-sm my-1"></Link>
+                <Link to ={`/user/${login}`} className="btn btn-dark btn-sm my-1">More</Link>
             </div>
         </div>
     )
